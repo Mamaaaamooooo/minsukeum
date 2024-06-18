@@ -1,32 +1,36 @@
 # 데이터 설명
 
-KorNLI는 카카브레인에서 만들어 공개한 데이터로, 자연어 이해(Natural Language Understanding), 자연어 추론(Natural Language Inference) 등의 작업에 활용할 수 있습니다. 데이터 정보는 다음과 같습니다.
+Cityscapes 시티스케이프는 도시 거리 이미지의 의미론적 이해에 초점을 맞춘 대규모 데이터베이스이다. 데이터는 8개 범주(평면, 인간, 차량, 구성, 객체, 자연, 하늘 및 공백)로 그룹화된 30개 클래스에 대한 의미론적, 객체별 주석을 제공한다. 데이터 세트는 약 5,000개의 상세 주석이 달린 이미지와 20,000개의 간략한 주석이 달린 이미지로 구성된다. 데이터는 50개 도시에서 주간의 좋은 기상 조건에서  촬영되었다. 
 
 
-#### 데이터 사이즈 
 
-| 종류 | 내용 |
-| --- | --- |
-| multinli_train <br/> (Multi-Genre NLI) |   392,702 &nbsp; examples |
-| snli_train <br/> (Standard NLI)  |    550,152 &nbsp; examples |
-| Xnli_dev <br/> (Cross-lingual NLI)  |   2,490 &nbsp; examples |
-| xnli_test  |  5,010 &nbsp; examples |
+※현재  ttps://www.cityscapes-dataset.com/ 에서 데이터를 직접 다운로드 받으려면 회사 또는 학교 계정 인증이 필요합니다. kaggle, pytorch, tensorflow 등의 데이터셋 클래스에서 다운받는 것을 추천합니다.
 
-#### 데이터 구조 :
-| 속성명 | 내용 |
-| --- | --- |
-| text | 문장 |
-| pair | text와 쌍이 되는 문장 |
-| label | text, pair 사이의 관계 |
+### 데이터 이미지 예시 
+![이미지](https://www.cityscapes-dataset.com/wordpress/wp-content/uploads/2015/07/zuerich00-1024x510.png)
 
+### 데이터 라벨 예시 
+| Group        | Classes                                                                                                   |
+|--------------|-----------------------------------------------------------------------------------------------------------|
+| flat         | road · sidewalk · parking<sup>+</sup> · rail track<sup>+</sup>                                            |
+| human        | person<sup>*</sup> · rider<sup>*</sup>                                                                    |
+| vehicle      | car<sup>*</sup> · truck<sup>*</sup> · bus<sup>*</sup> · on rails<sup>*</sup> · motorcycle<sup>*</sup> · bicycle<sup>*</sup> · caravan<sup>*+</sup> · trailer<sup>*+</sup> |
+| construction | building · wall · fence · guard rail<sup>+</sup> · bridge<sup>+</sup> · tunnel<sup>+</sup>                |
+| object       | pole · pole group<sup>+</sup> · traffic sign · traffic light                                              |
+| nature       | vegetation · terrain                                                                                      |
+| sky          | sky                                                                                                       |
+| void         | ground<sup>+</sup> · dynamic<sup>+</sup> · static<sup>+</sup>                                             |
 
-### 예시: 
-| Example   | English Translation                                          | Label         | 
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------- |  
-| P: 저는, 그냥 알아내려고 거기 있었어요.<br />H: 이해하려고 노력하고 있었어요. | I was just there just trying to figure it out.<br />I was trying to understand. | Entailment    |  
-| P: 저는, 그냥 알아내려고 거기 있었어요.<br />H: 나는 처음부터 그것을 잘 이해했다. | I was just there just trying to figure it out.<br />I understood it well from the beginning. | Contradiction |  
-| P: 저는, 그냥 알아내려고 거기 있었어요.<br />H: 나는 돈이 어디로 갔는지 이해하려고 했어요. | I was just there just trying to figure it out.<br />I was trying to understand where the money went. | Neutral       |
+#### 데이터 사이즈
 
+| 종류 | 행렬 차원 |데이터 종류 |개수 |
+| --- | --- |--- |--- |
+| train |784(28*28 크기) | 학습용 이미지 데이터| 55,000 개|
+| train_label |10(0~9 클래스)  | 학습용 라벨 데이터| 55,000 개|
+| val |784(28*28 크기  |검증용 이미지 데이터| 5,000개|
+| val_label |10(0~9 클래스)  | 검증용 라벨 데이터|5,000개|
+| test | 784(28*28 크기  |테스트용 이미지 데이터| 10,000개|
+| test_label | 10(0~9 클래스) | 테스트용 라벨 데이터| 10,000개|
 
 # 데이터 설명
 
