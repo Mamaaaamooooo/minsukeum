@@ -1,24 +1,20 @@
-# 데이터 설명
+Caltech101 데이터 세트는 101개의 카테고리(헬리콥터", "코끼리", "의자" 등)의 이미지와 101개 카테고리가 아닌 이미지를 포함하는 배경 범주가 포함되어 있습니다. 각 객체 범주에 대해 약 40에서 800개의 이미지가 있는 반면 대부분의 클래스에는 약 50개의 이미지가 있습니다. 이미지의 해상도는 약 300x200 픽셀입니다. 
 
-Cityscapes 시티스케이프는 도시 거리 이미지의 의미론적 이해에 초점을 맞춘 대규모 데이터베이스이다. 데이터는 8개 범주(평면, 인간, 차량, 구성, 객체, 자연, 하늘 및 공백)로 그룹화된 30개 클래스에 대한 의미론적, 객체별 주석을 제공한다. 데이터 세트는 약 5,000개의 상세 주석이 달린 이미지와 20,000개의 간략한 주석이 달린 이미지로 구성된다. 데이터는 50개 도시에서 주간의 좋은 기상 조건에서  촬영되었다. 
+[※keras 예제 코드 링크](https://github.com/tilemmpon/Caltech_101_object_classification/blob/master/Caltech_101_split_dataset_and_first_NN.ipynb)
 
+#### 데이터 이미지 예시 
+![이미지](https://user-images.githubusercontent.com/26833433/239366386-44171121-b745-4206-9b59-a3be41e16089.png)
 
-※현재  ttps://www.cityscapes-dataset.com/ 에서 데이터를 직접 다운로드 받으려면 회사 또는 학교 계정 인증이 필요합니다. kaggle, pytorch, tensorflow 등의 데이터셋 클래스에서 다운받는 것을 추천합니다.
-
-### 데이터 이미지 예시 
-![이미지](https://www.cityscapes-dataset.com/wordpress/wp-content/uploads/2015/07/zuerich00-1024x510.png)
-
-### 이미지지 카테고리
-| Group        | Classes                                                                                                   |
+#### 이미지 카테고리
+| 클래스        | 개수                                                                                                 |
 |--------------|-----------------------------------------------------------------------------------------------------------|
-| flat         | road · sidewalk · parking<sup>+</sup> · rail track<sup>+</sup>                                            |
-| human        | person<sup>*</sup> · rider<sup>*</sup>                                                                    |
-| vehicle      | car<sup>*</sup> · truck<sup>*</sup> · bus<sup>*</sup> · on rails<sup>*</sup> · motorcycle<sup>*</sup> · bicycle<sup>*</sup> · caravan<sup>*+</sup> · trailer<sup>*+</sup> |
-| construction | building · wall · fence · guard rail<sup>+</sup> · bridge<sup>+</sup> · tunnel<sup>+</sup>                |
-| object       | pole · pole group<sup>+</sup> · traffic sign · traffic light                                              |
-| nature       | vegetation · terrain                                                                                      |
-| sky          | sky                                                                                                       |
-| void         | ground<sup>+</sup> · dynamic<sup>+</sup> · static<sup>+</sup>                                             |
+| Faces         | 435 Samples                                    |
+| Faces_easy        | 435 Samples                                                         |
+| Leopards      | 200 Samples  |
+| Motorbikes | 798 Samples |
+| object       | pole · pole g                                                        
+| <center>…</center>         |<center>…</center>                                                                                                      |
+| yin_yang         | 60 Samples                                             |                                           |
 
 *  *: 단일 인스턴스 주석들이 이용 가능하다. 그러나, 그러한 인스턴스들 사이의 경계가 명확하게 보이지 않는 경우, 전체 군중/그룹은 함께 라벨링되고, 예를 들어, 자동차 그룹으로서 주석이 달린다.
 - +: 이 라벨은 어떠한 평가에도 포함되지 않으며 무효(또는 차량이 장착된 번호판의 경우)로 취급된다.
