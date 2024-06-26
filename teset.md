@@ -29,8 +29,8 @@ __※  KITTI 데이터셋은 객체 탐지, 객체 추적, 의미론적 분할 ,
 ### 이미지 카테고리
 | 작업 |이름| 클래스 |개수|
 |:---:|:---:|:---:|:---:|
-| 도로/차선 검출 |Road/Lane Detection Evaluation 2013  | 3 Classes| train : 289 <br> test: 290|
-| 객체 탐지    |Object Tracking Evaluation (2D bounding-boxes) | 8 Classes|  train: 21 sequences <br> test: 29 sequences|
+| 도로/차선 검출 |Road/Lane Detection Evaluation 2013  | 3 Classes| train : 289 <br/> test: 290|
+| 객체 탐지    |Object Tracking Evaluation (2D bounding-boxes) | 8 Classes|  train: 21 sequences <br/> test: 29 sequences|
 | …       | …     |…|…
 
 
