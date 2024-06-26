@@ -1,35 +1,76 @@
-KITTI(Karlsruhe Institute of Technology and Toyota Technology Institute)는 자동차의 주행에 대한 영상을 포함한 다양한 센서로 수집된 정보들을 수집 및 가공해서 제공한다. 상업적 용도로 사용하는 경우 별도의 라이센스를 획득해야 하지만 상업적 용도가 아니라면 회원가입을 통해 자유롭게 다운받고 사용할 수 있습니다.<br/><br/>
-이는 모바일 로봇 공학 및 자율 주행에서 사용하기에 가장 인기 있는 데이터 세트 중 하나로, 고해상도 RGB, 그레이스케일 스테레오 카메라 및 3D 레이저 스캐너를 포함한 다양한 센서 양식으로 기록된 몇 시간의 주행 시나리오로 구성됩니다. 데이터 세트 자체에는 의미론적 분할을 위한 실측 자료가 포함되어 있지 않습니다. 그러나 다양한 연구자들이 데이터 세트의 일부에 필요에 맞게 수동으로 주석을 달았습니다.<br/><br/>
-알바레즈는 도로, 수직 및 하늘의 세 가지 클래스를 사용하여 도로 탐지 대회에서 323개 이미지에 대한 실측 자료를 생성했습니다.<br/>
-Zhang 등은 건물, 하늘, 도로, 식물, 보도, 자동차, 보행자, 자전거, 표지판/폴 및 울타리의 10개 객체 범주에 대한 추적 챌린지에서 252개(훈련용 140개, 테스트용 112개) 획득 – RGB 및 벨로다인 스캔에 주석을 달았습니다. <br/><br/>
-Ros 등은 건물, 나무, 하늘, 자동차, 표지판, 도로, 보행자, 울타리, 기둥, 보도 및 자전거의 11개 클래스로 170개의 훈련 이미지와 46개의 테스트 이미지를  레이블로 지정했습니다.<br/><br/>
-[※ Colab 활용 Yolo v8 예제 코드 링크(클릭)](https://velog.io/@jjanggu84/YOLOv8-Kitti-Dataset-Training)<br/><br/><br/>
+PASCAL VOC 2012 데이터셋에는 차량, 자전거, 보트, 버스, 자동차, 오토바이, 기차, 병, 의자, 식탁, 화분, 소파, TV/모니터, 새, 고양이, 소, 개, 말, 양, 사람 등 20개의 객체 범주가 포함되어 있다. 이 데이터 세트의 각 이미지에는 픽셀 수준의 분할 주석, 경계 상자 주석 및 객체 클래스 주석이 있다. 이 데이터 세트는 객체 탐지, 의미론적 분할 및 분류 작업의 벤치마크로 널리 사용되었다. PASCAL VOC 데이터 세트는 훈련용 1,464개의 이미지, 검증용 1,449개의 이미지 및 개인 테스트 세트의 세 가지 하위 집합으로 나뉜다.
+
+Object detection 분야에서 사용되는 보편적인 데이터셋으로, PASCAL VOC 2012 데이터 셋은 R-CNN 모델에서부터 YOLO v3모델까지 학습 데이터셋으로 사용되었습니다. 
+
+※2005년에서 2012년에 이르기까지 challenge가 진행되었으며, 해당 데이터셋은 challenge의 벤치마크로 사용되었습니다.  
 
 
 
-__※  KITTI 데이터셋은 객체 탐지, 객체 추적, 의미론적 분할 ,뎁스 맵, 시각적 주행기록계 등에 사용되는 데이터셋을 모두 포함하고 있습니다.__
+
+
+__[※ PASCAL 데이터셋 핸들링 (클릭)](https://velog.io/@kyungmin1029/CV-OpenCV)__
+__[※ Pytorch로 PASCAL 2007 데이터셋 핸들링 (클릭)](https://deep-learning-study.tistory.com/612)__
+
+__※ [공식 사이트 (클릭)](http://host.robots.ox.ac.uk/pascal/VOC/index.html)에서 직접 다운 받거나, 파이토치 또는 텐서플로 라이브러리에서 데이터셋 모듈을 통해 다운 받는 방법 중 편한 방식을 권장함.__ 
 
 
 
 ### 데이터 이미지 예시 
 
-![이미지](https://www.cvlibs.net/datasets/kitti/images/header_depth.jpg)<br/><br/>
-![이미지](https://www.cvlibs.net/datasets/kitti/images/header_tracking.jpg)<br/><br/>
-![이미지](https://www.cvlibs.net/datasets/kitti/images/header_road.jpg)<br/><br/>
-![이미지](https://www.cvlibs.net/datasets/kitti/images/header_odometry.jpg)<br/><br/>
+![이미지](https://private-user-images.githubusercontent.com/135937372/343135660-a5c1e18b-cab7-4772-92dc-80efa800a0c4.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTk0MDEyMjUsIm5iZiI6MTcxOTQwMDkyNSwicGF0aCI6Ii8xMzU5MzczNzIvMzQzMTM1NjYwLWE1YzFlMThiLWNhYjctNDc3Mi05MmRjLTgwZWZhODAwYTBjNC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwNjI2JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDYyNlQxMTIyMDVaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT02Y2E3NDViMWE3N2Q5YmI0YTJmZGFkY2YxZmQzNTU2YWJkYTdmMjAxOTRjNjFlN2NhZDk1ZTNjMmE1NTIxYWQxJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.gSjs2vmI71d1Gx59sTdmzEhjwjRCUUiRwnhR6cegMuE)
+
+### 이미지 카테고리
+| 대분류 | 소분류 | 내용 |
+|:---:|:---:|:---:|
+| Person | person | 사람 |
+| Animal | bird | 새|
+|  | cat | 고양이|
+| 3 | cow | 소|
+| 4 | dog |개|
+| … | … |…|
+| Vehicle | aeroplane | 비행기 |
+|  | bicycle | 자전거|
+| … | … | … |
+| Indoor | tv/monitor | TV/모니터 |
+
+#### 데이터 구조 
+| 내용 | 비고 |
+| :---: | :---: |
+| 주석형식 | XML 포맷|
+| 어노테이션 | 바운딩박스(xmin-top left, ymin-top leff, xmax-bottom right, ymax-bottom right) |
+| 평균 객체 수 | 2.4개 |
+| 평균 클래스 수 | 1.4개 |
+
+
+
+### 데이터 사이즈 
+| 연도  | 클래스수 | 내용  | 개수 | 
+|:---:|:---:|:---:|:---:|
+| 2012  | 20  | train |5,717 Samples | 
+| 2012  | 20 |test|5,823 Samples | 
+| …  | …   | …  |…  | 
+| 2007  | 22 |train|5,011 Samples | 
+| …  | …   | …  |…  | 
+| 2005  | 4 |train|1,578 Samples | 
+| 2005  | 4 |test|654 Samples |
+
+### 연도별 특징
+| 연도 | 통계 | 달라진 점 | 비고 |
+|------|-------------|-------------------|-------|
+| [2005](http://host.robots.ox.ac.uk/pascal/VOC/voc2005/index.html) | 오직 4개의 클래스: 자전거, 자동차, 오토바이, 사람. 학습/검증/테스트: 1578개의 이미지에 2209개의 주석이 달린 객체가 포함됨. | 두 개의 대회: 분류 및 탐지 | 이미지는 주로 기존의 공개 데이터셋에서 가져왔으며, 이후 사용된 플리커 이미지만큼 도전적이지 않았습니다. 이 데이터셋은 더 이상 사용되지 않습니다. |
+| [2006](http://host.robots.ox.ac.uk/pascal/VOC/voc2006/index.html) | 10개의 클래스: 자전거, 버스, 자동차, 고양이, 소, 개, 말, 오토바이, 사람, 양. 학습/검증/테스트: 2618개의 이미지에 4754개의 주석이 달린 객체가 포함됨. | 이미지 출처: 플리커와 Microsoft Research Cambridge (MSRC) 데이터셋 | MSRC 이미지가 플리커보다 쉬웠으며, 사진은 종종 관심 객체에 집중되었습니다. 이 데이터셋은 더 이상 사용되지 않습니다. |
+| [2007](http://host.robots.ox.ac.uk/pascal/VOC/voc2007/index.html) | 20개의 클래스: <ul><li><i>사람:</i> 사람</li><li><i>동물:</i> 새, 고양이, 소, 개, 말, 양</li><li><i>차량:</i> 비행기, 자전거, 보트, 버스, 자동차, 오토바이, 기차</li><li><i>실내:</i> 병, 의자, 식탁, 화분, 소파, TV/모니터</li></ul> 학습/검증/테스트: 9963개의 이미지에 24640개의 주석이 달린 객체가 포함됨. | <ul><li>클래스 수가 10개에서 20개로 증가</li><li>세분화 테스트 추가</li><li>사람 레이아웃 테스트 추가</li><li>주석에 절단 플래그 추가</li><li>분류 대회의 평가 척도가 ROC-AUC에서 평균 정밀도로 변경됨</li></ul> | 이 해에 20개의 클래스가 설정되었으며, 이후 고정되었습니다. 이 해가 테스트 데이터의 주석이 공개된 마지막 해입니다. |
+| [2008](http://host.robots.ox.ac.uk/pascal/VOC/voc2008/index.html) | 20개의 클래스. 데이터는 (평소와 같이) 약 50% 학습/검증과 50% 테스트로 나뉩니다. 학습/검증 데이터는 4340개의 이미지에 10363개의 주석이 달린 객체가 포함됨. | <ul><li>주석에 가림 플래그 추가</li><li>테스트 데이터 주석이 더 이상 공개되지 않음</li><li>세분화 및 사람 레이아웃 데이터셋에 VOC2007 세트의 이미지 포함</li></ul> |  |
+| [2009](http://host.robots.ox.ac.uk/pascal/VOC/voc2009/index.html) | 20개의 클래스. 학습/검증 데이터는 7054개의 이미지에 17218개의 ROI 주석이 달린 객체와 3211개의 세분화가 포함됨. | <ul><li>이제부터 모든 작업의 데이터는 이전 해의 이미지에 새로운 이미지를 추가하여 구성됩니다. 이전에는 매년 분류/탐지 작업을 위한 완전히 새로운 데이터셋이 공개되었습니다.</li><li>추가함으로써 매년 이미지 수가 증가하고, 테스트 결과를 이전 해의 이미지와 비교할 수 있게 됩니다.</li><li>세분화가 표준 대회로 승격됨 (테스터에서 승격)</li></ul> | <ul><li>추가된 이미지에 대해 어려운 플래그가 제공되지 않았음 (누락).</li><li>테스트 데이터 주석이 공개되지 않음.</li></ul> |
+| [2010](http://host.robots.ox.ac.uk/pascal/VOC/voc2010/index.html) | 20개의 클래스. 학습/검증 데이터는 10103개의 이미지에 23374개의 ROI 주석이 달린 객체와 4203개의 세분화가 포함됨. | <ul><li>액션 분류 테스터 추가</li><li>ImageNet을 기반으로 한 대규모 분류에 대한 관련 대회 추가</li><li>아마존 메커니컬 터크를 초기 주석 단계에 사용</li></ul> | <ul><li>AP 계산 방법이 변경됨. 이제는 모든 데이터 포인트를 사용하여 계산됨 (TREC 스타일 샘플링 대신)</li><li>테스트 데이터 주석이 공개되지 않음.</li></ul> |
+| [2011](http://host.robots.ox.ac.uk/pascal/VOC/voc2011/index.html) | 20개의 클래스. 학습/검증 데이터는 11530개의 이미지에 27450개의 ROI 주석이 달린 객체와 5034개의 세분화가 포함됨. | <ul><li>액션 분류 테스터가 10개의 클래스 + "기타"로 확장됨</li></ul> | <ul><li>레이아웃 주석이 이제 완전하지 않음: 사람만 주석이 달렸으며 일부 사람은 주석이 달리지 않을 수 있음.</li></ul> |
+| [2012](http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html) | 20개의 클래스. 학습/검증 데이터는 11530개의 이미지에 27450개의 ROI 주석이 달린 객체와 6929개의 세분화가 포함됨. | <ul><li>세분화 데이터셋의 크기가 상당히 증가함.</li><li>액션 분류 데이터셋의 사람은 신체의 참조 포인트로 추가 주석이 달림.</li></ul> | <ul><li>분류, 탐지 및 사람 레이아웃에 대한 데이터셋은 VOC2011과 동일함.</li></ul> |
+
+
 
 ### 이미지 카테고리
 | 작업 |이름| 클래스 |개수|
 |:---:|:---:|:---:|:---:|
-| 도로/차선 검출 |Road/Lane Detection Evaluation 2013  | 3 Classes| train : 289 <br/> test: 290|
-| 객체 탐지    |Object Tracking Evaluation (2D bounding-boxes) | 8 Classes|  train: 21 sequences <br/> test: 29 sequences|
+| 도로/차선 검출 |Road/Lane Detection Evaluation 2013  | 3 Classes| train : 289 <br> test: 290|
+| 객체 탐지    |Object Tracking Evaluation (2D bounding-boxes) | 8 Classes|  train: 21 sequences <br> test: 29 sequences|
 | …       | …     |…|…
-
-
-
-#### 데이터 사이즈
-
-| 형식 | 내용 |
-|:---:|:---:|
-| 압축파일 | 수 MB 에서 수 GB까지 다양함  |
-
