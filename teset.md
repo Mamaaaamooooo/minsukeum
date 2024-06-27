@@ -1,17 +1,7 @@
-PASCAL VOC 2012 데이터셋에는 차량, 자전거, 보트, 버스, 자동차, 오토바이, 기차, 병, 의자, 식탁, 화분, 소파, TV/모니터, 새, 고양이, 소, 개, 말, 양, 사람 등 20개의 객체 범주가 포함되어 있다. 이 데이터 세트의 각 이미지에는 픽셀 수준의 분할 주석, 경계 상자 주석 및 객체 클래스 주석이 있다. 이 데이터 세트는 객체 탐지, 의미론적 분할 및 분류 작업의 벤치마크로 널리 사용되었다. PASCAL VOC 데이터 세트는 훈련용 1,464개의 이미지, 검증용 1,449개의 이미지 및 개인 테스트 세트의 세 가지 하위 집합으로 나뉜다.
+MS COCO Captions 데이터셋의 영문 Caption 을 한국어 문장으로 번역. MS COCO 데이터셋 중 약 12만장에 해당하는 이미지의 설명문을 번역하였다. __※ [MS COCO 데이터셋 참고 (클릭)](https://cocodataset.org/#home)__
 
-Object detection 분야에서 사용되는 보편적인 데이터셋으로, PASCAL VOC 2012 데이터 셋은 R-CNN 모델에서부터 YOLO v3모델까지 학습 데이터셋으로 사용되었습니다. 
-
-※2005년에서 2012년에 이르기까지 challenge가 진행되었으며, 해당 데이터셋은 challenge의 벤치마크로 사용되었습니다.  
-
-
-
-
-
-__[※ PASCAL 데이터셋 핸들링 (클릭)](https://velog.io/@kyungmin1029/CV-OpenCV)__
-__[※ Pytorch로 PASCAL 2007 데이터셋 핸들링 (클릭)](https://deep-learning-study.tistory.com/612)__
-
-__※ [공식 사이트 (클릭)](http://host.robots.ox.ac.uk/pascal/VOC/index.html)에서 직접 다운 받거나, 파이토치 또는 텐서플로 라이브러리에서 데이터셋 모듈을 통해 다운 받는 방법 중 편한 방식을 권장함.__ 
+<br><br><br><br>
+__※   [aihub 공식사이트(클릭)](https://dancetrack.github.io/) 에서 직접 다운로드 받을 수 있음.__
 
 
 
