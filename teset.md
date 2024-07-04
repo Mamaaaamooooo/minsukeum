@@ -1,152 +1,158 @@
-AI HUB '상담음성' 데이터셋은 웹 기반 등 다양한 방식으로 상담센터에 연락하여 상담하는 내용을 녹음한 음성 데이터입니다.
+AI HUB '립리딩(입모양) 음성인식' 데이터셋은 다양한 환경에서 복잡한 음성인식 기반 서비스 제공을 위해 음향 외 시각 정보를 활용하여 입모양 인식을 위한 다양한 각도 및 소음환경에서 녹화된 오디오 및 비주얼 데이터로 구성된 융합 데이터셋입니다.
 
-한국인의 음성을 문자로 바꾸어 주고, 문맥을 이해하는 한국어 음성 언어처리 기술 개발을 위하여 AI 학습용 한국어 음성 DB를 구축하였습니다. 
+본 데이터셋은 영상 및 음성에 대한 노이즈가 심한 환경에서 음성인식 성능을 보완할 수 있는 입모양 인식이 가능한 형태의 오디오 및 비주얼 데이터를 포함하고 있습니다.
 
-교육, 금융, 통신판매 등 다양한 도메인에서 AI 상담센터용 음성인식 학습데이터로 활용 가능한 3,000시간의 가상 시나리오 기반한 크라우드 소싱 녹취 데이터를 수집하였으며, wav 음원파일, txt 전사 텍스트 파일, json 형식의 메타데이터 파일이 제공됩니다.
+음성데이터는 5분 내외로 정제되었으며, 수집 영상 속 얼굴 및 입술 영역의 바운딩 박스는 OpenCV Face/Lip Detection 알고리즘(dlib 사용)을 통해 68개의 랜드마크로 오토라벨링 되었습니다. 
 
-본 데이터셋은 AI상담센터를 위한 음성상담, 음성인식기술 및 언어이해, 언어생성연구 및 서비스 개발에 활용될 수 있습니다.
+### 얼굴 랜드마크 예시
+---
+![이미지](https://github.com/Mamaaaamooooo/minsukeum/blob/main/dlib_landmark.jpg?raw=true)
 
-__※ [AIHUB 음성, 텍스트 데이터 전처리 참고 자료(클릭)](https://blog.naver.com/sooftware/221821797852)__
 
-__※  AIHUB의 전사 규칙을 참고하여, 상기 사이트의 데이터 전처리과정을 정독하는 것을 추천합니다.__
+__※ [dlib 라이브러리 관련 자료(클릭)](https://prlabhotelshoe.tistory.com/4)__
+
+__※ [ 한국어 립리딩 관련 유사 프로젝트 예시 (클릭)](https://github.com/dnwjddl/LipReading_Korean/tree/master)__
+
+__※  추가적으로 AIHUB의 데이터 설명서 및 활용가이드를 읽어 보는 것을 추천합니다.__
+
+
+### 데이터 구축 규모
+--------
+| 데이터 종류 | 데이터 형태 | 데이터 규모|
+|:---:|:---:|:---:|
+| 원천데이터-영상 | .mp4 | 5,750 시간|
+| 원천데이터-음성| .wav | 1,150 시간|
+| 원천데이터-텍스트 | .json | 66,420 개|
+
 
 ### 데이터 사이즈
---------------------
-|  데이터 종류| 수집시간   | 제공방식  |
-|:---:|:---:|:---:|
-| 교육 | 1000시간   | wav 음원파일<br>txt 전사파일<br>json 메타파일    |
-| 금융   | 1000시간  |  wav 음원파일<br>txt 전사파일<br>json 메타파일   |
-| 통신판매 | 1000시간 |  wav 음원파일<br>txt 전사파일<br>json 메타파일 |
+--------
+| 종류 | 용량 |
+|:---:|:---:|
+| Train | 약 18 TB  |
+| Val | 약 2 TB  |
 
+### 영상(mp4) 데이터 예시
+---
+![이미지](https://github.com/Mamaaaamooooo/minsukeum/blob/main/%EC%9E%85%EB%AA%A8%EC%96%91_image.png?raw=true)
 
-### 데이터 요약 이미지 
---------------------------
-  ![이미지](https://github.com/Mamaaaamooooo/minsukeum/blob/main/%EC%83%81%EB%8B%B4%EC%9D%8C%EC%84%B1_data.png?raw=true)
-
-### 음성파일 디렉토리 구조
--------------------------------------------------
-```
-<원천 데이터>
-    |
-    .- KtelSpeech.../
-    |           |
-                .- J91/
-                |
-                    .- S00007727/
-                            |    |
-                            .- 0001.wav
-                            |    |
-                            .- 0002.wav
-                            |    |
-                            .- 0003.wav 
-                            |    |
-                            |    ...
-                    .- S00007728/
-                            |    |
-                            .- 00001.wav
-                            |    ...
-                .- J92/
-                |
-                ...
-```
-__※여기서 폴더명은 각 대화의 ID, 파일명은 발화 문장의 ID입니다.__
-
-
-### 전사텍스트 파일 디렉토리 구조
--------------------------------------------------
-```
-<라벨링 데이터>
-    |
-    .- KtelSpeech.../
-    |           |
-                .- J91/
-                |
-                    .- S00007727/
-                            |    |
-                            .- 0001.txt
-                            |    |
-                            .- 0002.txt
-                            |    |
-                            .- 0003.txt 
-                            |    |
-                            |    ...
-                    .- S00007728/
-                            |    |
-                            .- 00001.txt
-                            |    ...
-                .- J92/
-                |
-                ...
-```
-
-__※여기서 폴더명은 각 대화의 ID, 파일명은 발화 문장의 ID입니다.__
-
-### 메타데이터 JSON 파일 예시
-------------------
+__※초상권 보호를 위해 영상 속 인물의 얼굴은 모자이크 처리하였습니다.__
+### JSON 데이터 예시 
+------
 ```JSON
 {
-	"dataSet": {
-		"version": "1.0",
-		"date": "20210110",
-		"typeInfo": {
-			"category": "교육",
-			"subcategory": "교육",
-			"place": null,
-			"speakers": [
-				{
-					"id": "10614",
-					"gender": "여",
-					"type": "상담원",
-					"age": "30대",
-					"residence": "서울"
-				},
-				{
-					"id": "qpccbzaz",
-					"gender": "여",
-					"type": "고객",
-					"age": "30대",
-					"residence": "경기"
-				}
-			],
-			"inputType": "모바일"
-		},
-		"dialogs": [
-			{
-				"speaker": "10614",
-				"audioPath": "KtelSpeech/D60/J91/S00007727/0001.wav",
-				"textPath": "KtelSpeech/D60/J91/S00007727/0001.txt"
-			}
-			...
+	 {
+        "dataSet": {
+            "description": "AI HUB Voice and motion data_Lip voice",
+            "url": "https://aihub.or.kr/",
+            "version": 1.0,
+            "year": "2021"
+        },
+        "Video_info": {
+            "video_Name": "lip_J_1_F_02_C032_A_011.mp4",
+            "video_Format": "MP4",
+            "video_Duration": "0:05:07",
+            "FPS": 30,
+            "Resolution": "1920*1080"
+        },
+        "Audio_info": {
+            "Audio_Name": "lip_J_1_F_02_C032_A_011.wav",
+            "Audio_Format": "wav",
+            "Audio_Duration": "0:05:07",
+            "Sampling_rate": "48Khz",
+            "Channel(s)": 2
+        },
+        "Audio_env": {
+            "Noise": 1
+        },
+        "Video_env": {
+            "env": "indoor_light",
+            "Angle": "A"
+        },
+        "Sentence_info": [
+            {
+                "ID": 1,
+                "topic": "health/diet",
+                "sentence_text": "교통사고로 큰 부상을 겪고 난 뒤 외출하기가 너무 힘들어져서 너무 외로워.",
+                "start_time": 3.712,
+                "end_time": 9.770666666666667
+            },
+            {
+                "ID": 2,
+                "topic": "health/diet",
+                "sentence_text": "지난달부터 남편이 소화가 잘 안 되고 가끔 헛구역질도 난다고 해서 엊그제 병원에 다녀왔었어. 남편이 걱정돼.",
+                "start_time": 12.714666666666666,
+                "end_time": 22.698666666666668
+            ],
+        "speaker_info": {
+            "speaker_ID": "C032",
+            "Specificity": "C",
+            "Gender": "F",
+            "Age": 2,
+            "Accent": "N"
+        },
+        "Bounding_box_info": {
+            "Face_bounding_box": {
+                "xtl_ytl_xbr_ybr": [
+                    [
+                        211,
+                        712,
+                        865,
+                        1366
+                    ],
+                    [
+                        211,
+                        711,
+                        865,
+                        1366
+                    ],
+                }
+            }
+    }
 }
 ```
-### 각 카테고리 설명
----------------------
-| ID  | 키 명 | 타입  |  키 설명 |
-|---|---|---|---|
-|  | dataSet        | Dict  |  데이터셋               |                                           |
-| 1   | version         | String | 데이터셋 버전       |                                           |
-| 2   | date            | String | 녹취된 날짜         |                                           |
-| 3   | typeInfo        | Dict   | 음원 데이터 상세 정보 |                                           |
-| 3-1 | category        | String | 음원 카테고리 정보  |                                           |
-| 3-2 | subcategory     | String | 음원 서브 카테고리  |                                           |
-| 3-3 | place           | String | 음원 녹취 장소      |                                           |
-| 3-4 | speakers        | List   | 화자 목록           |                                           |
-| 3-4-1 | id            | String | 화자 아이디         |                                           |
-| 3-4-2 | type          | String | 화자 유형: 고객, 상담원 |                                           |
-| 3-4-3 | age           | String | 나이대: 20대, 30대, 50(추정), null(알수없음) 등 | |
-| 3-4-4 | gender        | String | 화자 성별: 남, 여   |                                           |
-| 3-4-5 | residence     | String | 거주지역: 서울, 대전, 부산, 광주, null(알수없음) 등 | |
-| 3-5 | inputType       | String | 입력형식: 방송, 유선, 모바일, 인터넷 등 |  |
-| 4   | dialogs         | List   | 전사 데이터 목록: 묵음 기준으로 나누어진 발화 단위로 생성 | |
-| 4-1 | speaker         | String | 화자 아이디: speakers에 등록된 id |            |
-| 4-2 | audioPath       | String | 발화 단위 RAW 데이터 경로 |                                    |
-| 4-3 | textPath        | String | 발화 단위 TEXT 데이터 경로 |                                    |
 
+### 데이터 카테고리
+-----
+| 번호 | 항목                      | 타입    | 필수여부 | 영문명                   | 한글명                    |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1    | dataset                   | object  | Y        | dataset                  | 데이터셋                  |
+| 1-1  | description               | string  | Y        | description              | 데이터 정보               |
+| 1-2  | url                       | string  | Y        | url                      | 데이터셋 url (AIHUB 홈페이지) |
+| 1-3  | version                   | number  | Y        | version                  | 데이터 버전               |
+| 1-4  | year                      | string  | Y        | year                     | 연도                      |
+| 2    | video_info                | object  | Y        | video_info               | 영상 정보                 |
+| 2-1  | video_name                | string  | Y        | video_name               | 영상 파일명               |
+| 2-2  | video_format              | string  | Y        | video_format             | 영상 포맷                 |
+| 2-3  | video_duration            | string  | Y        | video_duration           | 영상 길이                 |
+| 2-4  | FPS                       | number  | Y        | FPS                      | 프레임                    |
+| 2-5  | resolution                | string  | Y        | resolution               | 해상도                    |
+| 3    | audio_info                | object  | Y        | audio_info               | 음성 정보                 |
+| 3-1  | audio_name                | string  | Y        | audio_name               | 음성 파일명               |
+| 3-2  | audio_format              | string  | Y        | audio_format             | 음성 포맷                 |
+| 3-3  | audio_duration            | string  | Y        | audio_duration           | 음성 길이                 |
+| 3-4  | sampling_rate             | string  | Y        | sampling_rate            | 오디오 샘플링레이트       |
+| 3-5  | channel(s)                | number  | Y        | channel(s)               | 오디오 채널 수            |
+| 4    | audio_env                 | object  | Y        | audio_env                | 음성 환경                 |
+| 4-1  | noise                     | number  | Y        | noise                    | 소음환경                  |
+| 5    | video_env                 | object  | Y        | video_env                | 영상 환경                 |
+| 5-1  | env                       | string  |          | env                      | 촬영환경                  |
+| 5-2  | angle                     | string  | Y        | angle                    | 촬영각도                  |
+| 6    | sentence_info             | array   | Y        | sentence_info            | 문장정보                  |
+| 6-1  | id                        | string  | Y        | id                       | 문장 ID                   |
+| 6-2  | topic                     | string  | Y        | topic                    | 발화주제                  |
+| 6-3  | sentence_text             | string  | Y        | sentence_text            | 발화내용                  |
+| 6-4  | start_time                | number  | Y        | start_time               | 발화 시작 시간            |
+| 6-5  | end_time                  | number  | Y        | end_time                 | 발화 종료 시간            |
+| 7    | speaker_info              | object  | Y        | speaker_info             | 발화자 정보               |
+| 7-1  | speaker_ID                | string  | Y        | speaker_ID               | 발화자 ID                 |
+| 7-2  | specificity               | string  | Y        | specificity              | 특성                      |
+| 7-3  | gender                    | string  | Y        | gender                   | 성별                      |
+| 7-4  | age                       | number  | Y        | age                      | 연령대                    |
+| 7-5  | accent                    | string  | Y        | accent                   | 사투리                    |
+| 8    | bounding_box_info         | object  | Y        | bounding_box_info        | 바운딩박스 정보           |
+| 8-1  | Face_bounding_box         | array   | Y        | Face_bounding_box        | 얼굴 영역 바운딩박스      |
+| 8-1-1| xtl_ytl_xbr_ybr           | number  | Y        | xtl_ytl_xbr_ybr          | 얼굴 영역 좌표값          |
+| 8-2  | Lip_bounding_box          | array   | Y        | Lip_bounding_box         | 입술 영역 바운딩박스      |
+| 8-2-1| xtl_ytl_xbr_ybr           | number  | Y        | xtl_ytl_xbr_ybr          | 입술 영역 좌표값          |
 
-### 데이터 사이즈 
- -------------------
-| 종류 | 내용 |
-|:---:|:---:|
-| train | 약 99 GB  |
-| val | 약 1.2GB  |
-| 총 용량 | 약 100 GB |
