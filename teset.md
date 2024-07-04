@@ -21,8 +21,6 @@ __※  AIHUB의 전사 규칙을 참고하여, 상기 사이트의 데이터 전
 ### 데이터 요약 이미지 
   ![이미지](https://github.com/Mamaaaamooooo/minsukeum/blob/main/%EC%83%81%EB%8B%B4%EC%9D%8C%EC%84%B1_data.png?raw=true)
 
-__또는 [Kaggle(링크)](https://www.kaggle.com/datasets/namhocayai/voxceleb1)에서 .wav 파일과 .txt 파일을 다운 받을 수 있음__
-
 ### 음성파일 디렉토리 구조
 -------------------------------------------------
 ```
@@ -49,7 +47,7 @@ __또는 [Kaggle(링크)](https://www.kaggle.com/datasets/namhocayai/voxceleb1)�
                 |
                 ...
 ```
-__※여기서 폴더명은 각 대화 . 가령, 1zcIwhmdeo4 폴더의 경우 원본 동영상의 링크는 https://www.youtube.com/watch?v=1zcIwhmdeo4가 됩니다.__
+__※여기서 폴더명은 각 대화의 ID, 파일명은 발화 문장의 ID입니다.__
 
 
 ### 전사텍스트 파일 디렉토리 구조
@@ -78,6 +76,9 @@ __※여기서 폴더명은 각 대화 . 가령, 1zcIwhmdeo4 폴더의 경우 �
                 |
                 ...
 ```
+
+__※여기서 폴더명은 각 대화의 ID, 파일명은 발화 문장의 ID입니다.__
+
 ### 메타데이터 JSON 파일 예시
 ```JSON
 {
