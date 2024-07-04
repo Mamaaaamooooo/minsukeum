@@ -1,125 +1,152 @@
-AI HUB '구음장애 음성인식' 데이터셋은 병원(한림대 강남성심병원, 동탄성심병원 등), 청각 센터(한림대 청각학과 졸업생 네트워크 활용)에서 최소 1,200명(총 5,000 시간 이상 5,250시간 이하)의 원시데이터를 확보하여 다양한 나이, 지역, 성별, 질환으로부터 정제된 발화 데이터 추출 및 질환 분류 인공지능 데이터셋 구축하였습니다.
+AI HUB '상담음성' 데이터셋은 웹 기반 등 다양한 방식으로 상담센터에 연락하여 상담하는 내용을 녹음한 음성 데이터입니다.
 
-학습 데이터 셋은 녹음한 음성 파일이며, 전사데이터는 txt 기반의 데이터 셋 목록 및 메타정보로 구성되어 있습니다. 
+한국인의 음성을 문자로 바꾸어 주고, 문맥을 이해하는 한국어 음성 언어처리 기술 개발을 위하여 AI 학습용 한국어 음성 DB를 구축하였습니다. 
 
-메타정보를 담고 있는 JSON 파일은 환자관리번호, 질병, 나이, 성별, 거주지, 녹음장소, 음원파일이름, 음원의 Sampling Rate, 말소리 시작지점, 말소리 종료지점, 총 재생 시간, 음원 데이터 크기, 말소리, 환자관리번호, 질병, 나이, 성별, 거주지, 녹음장소, 녹음파일이름 등의 카테고리로 어노테이션 되어 있습니다.
+교육, 금융, 통신판매 등 다양한 도메인에서 AI 상담센터용 음성인식 학습데이터로 활용 가능한 3,000시간의 가상 시나리오 기반한 크라우드 소싱 녹취 데이터를 수집하였으며, wav 음원파일, txt 전사 텍스트 파일, json 형식의 메타데이터 파일이 제공됩니다.
 
+본 데이터셋은 AI상담센터를 위한 음성상담, 음성인식기술 및 언어이해, 언어생성연구 및 서비스 개발에 활용될 수 있습니다.
 
-__※ [해당 데이터 전처리 참고 자료(클릭)](https://ysg2997.tistory.com/52)__
+__※ [AIHUB 음성, 텍스트 데이터 전처리 참고 자료(클릭)](https://blog.naver.com/sooftware/221821797852)__
 
-__※ [해당 데이터 시각화 및 특성 추출 참고 자료(클릭)](https://ysg2997.tistory.com/51)__
-
-
-__※  추가적으로 AIHUB의 데이터 설명서 및 활용가이드를 읽어 보는 것을 추천합니다.__
-
-
-
-### 데이터 카테고리
---------
-| 항목 | 인원 | 녹음 시간|
-|:---:|:---:|:---:|
-| 뇌신경장애 | 1,200명 | 1,750 시간 이하|
-| 언어 및 청각장애 | 1,200명 | 1,750 시간 이하|
-| 후두장애 | 1,200명 | 1,750 시간 이하|
-| 소계 | 1,200명 |5,000시간 ~ 5,250 시간|
+__※  AIHUB의 전사 규칙을 참고하여, 상기 사이트의 데이터 전처리과정을 정독하는 것을 추천합니다.__
 
 ### 데이터 사이즈
---------
-| 종류 | 용량량 |
-|:---:|:---:|
-| Train | 약 381 GB  |
-| Val | 약 75 GB  |
+--------------------
+|  데이터 종류| 수집시간   | 제공방식  |
+|:---:|:---:|:---:|
+| 교육 | 1000시간   | wav 음원파일<br>txt 전사파일<br>json 메타파일    |
+| 금융   | 1000시간  |  wav 음원파일<br>txt 전사파일<br>json 메타파일   |
+| 통신판매 | 1000시간 |  wav 음원파일<br>txt 전사파일<br>json 메타파일 |
 
-### 데이터 포맷 
---------
-| 데이터 종류 | 형식 |
-|:---:|:---:|
-| 오디오 | .wav  |
-| 라벨링(음성 전사) | .json  |
 
-### JSON 데이터 예시 
-------
-```JSON
-{
-	"playTime": 744.3171201814059,
-	"Transcript": "문 열어. 문 열어? 나무가 많아. 나무가 많아? 내일 만나. 내일 만나? 이제 내려. 이제 내려? 머리 말려. 머리 말려? 여기 놔요. 여기 놔요? 나비가 날아요. 나비가 날아요? 엄마가 노래해. 엄마가 노래해? 머리 말려요. 머리 말려요? 여기 놨어요. 여기 놨어요? 여기 놔. 여기 놔? 여기 놔요. 여기 놔요? 머리 말려. 머리 말려? 머리 말려요. 머리 말려요? 여기 놨어요. 여기 놨어요? 머리 말렸어요. 머리 말렸어요? 여기 놓을 거예요. 여기 놓을 거예요? 밥 먹었죠. 밥 먹었죠? 집에 아무도 없겠지. 집에 아무도 없겠지? 발이 얼었어요. 발이 얼었어요? 길이 많이 막혀요. 길이 많이 막혀요? 선생님이 하셨어요. 선생님이 하셨어요? 거기 갈래. 거기 갈래? 그렇게 될 리가 없지. 그렇게 될 리가 없지? 전화 왔어요. 전화 왔어요? 여기까지 걸어 왔어요. 여기까지 걸어 왔어요? 방이 추운 거 같애. 방이 추운 거 같애? 날씨가 추워요. 날씨가 추워요? 음악 켜. 음악 켜? 날씨가 더워요. 날씨가 더워요?",
-	"File_id": "ID-02-25-N-KSM-02-02-M-45-JL.wav",
-	"FileSize": 1561,
-	"Disease_info": {
-		"Type": "02",
-		"Subcategory1": "",
-		"Subcategory2": "25",
-		"Subcategory3": "",
-		"Subcategory6": ""
-	},
-	"Meta_info": {
-		"Language": "Korean",
-		"Version": "v.0.1",
-		"RecordingDate": "",
-		"FilingDate": "",
-		"RevisionHistory": "",
-		"SamplingRate": 48000,
-		"Frequency": "",
-		"StartPos": 0,
-		"EndPos": 744.3171201814059,
-		"PlayTime": 744.3171201814059,
-		"DataSize": "",
-		"RecordingEnviron": "silent room",
-		"NoiseEnviron": "",
-		"RecordingDevice": "audio recorder",
-		"DirectoryPath": "",
-		"FileFormat": "wav"
-	},
-	"Patient_info": {
-		"SpeakerName": "",
-		"Sex": "M",
-		"Age": "45",
-		"Area": "JL"
-	},
-	"Test_info": {
-		"TestMethod": "Read aloud scripts"
-	}
-}
+### 데이터 요약 이미지 
+--------------------------
+  ![이미지](https://github.com/Mamaaaamooooo/minsukeum/blob/main/%EC%83%81%EB%8B%B4%EC%9D%8C%EC%84%B1_data.png?raw=true)
+
+### 음성파일 디렉토리 구조
+-------------------------------------------------
+```
+<원천 데이터>
+    |
+    .- KtelSpeech.../
+    |           |
+                .- J91/
+                |
+                    .- S00007727/
+                            |    |
+                            .- 0001.wav
+                            |    |
+                            .- 0002.wav
+                            |    |
+                            .- 0003.wav 
+                            |    |
+                            |    ...
+                    .- S00007728/
+                            |    |
+                            .- 00001.wav
+                            |    ...
+                .- J92/
+                |
+                ...
+```
+__※여기서 폴더명은 각 대화의 ID, 파일명은 발화 문장의 ID입니다.__
+
+
+### 전사텍스트 파일 디렉토리 구조
+-------------------------------------------------
+```
+<라벨링 데이터>
+    |
+    .- KtelSpeech.../
+    |           |
+                .- J91/
+                |
+                    .- S00007727/
+                            |    |
+                            .- 0001.txt
+                            |    |
+                            .- 0002.txt
+                            |    |
+                            .- 0003.txt 
+                            |    |
+                            |    ...
+                    .- S00007728/
+                            |    |
+                            .- 00001.txt
+                            |    ...
+                .- J92/
+                |
+                ...
 ```
 
-### 데이터 카테고리
------
-| 대분류              | 속성 표기                    | 의미                | 타입   | 필수여부 | 예시                         |
-|:---:|:---:|:---:|:---:|:---:|:---:|
-| 기본 정보 (Meta Info) | meta.Language               | 언어                | string | Y        | "KOR"                        |
-| 기본 정보 (Meta Info) | meta.Version                | 버전                | string | Y        | "1.0v"                       |
-| 기본 정보 (Meta Info) | meta.RecordDate             | 녹음날짜            | string | Y        | “2021-05-21”                 |
-| 기본 정보 (Meta Info) | meta.FillingDate            | 수정날짜            | string |          | “2021-05-22”                 |
-| 기본 정보 (Meta Info) | meta.RecordHistory          | 수정기록            | string | Y        | “2021-05-22”                 |
-| 기본 정보 (Meta Info) | meta.Distributer            | 수행기관            | string | Y        | “한림대학교 평촌병원”        |
-| 기본 정보 (Meta Info) | meta.FileName               | 음원파일이름        | string | Y        | “ID0001.mp3”                 |
-| 기본 정보 (Meta Info) | meta.SampRate               | 음원의 SamplingRate | number | Y        | 44100(Hz)                    |
-| 기본 정보 (Meta Info) | meta.Frequency              | 주파수              | number | Y        | 16bps                        |
-| 기본 정보 (Meta Info) | meta.StartPos               | 말소리 시작지점     | number | Y        | 10(ms)                       |
-| 기본 정보 (Meta Info) | meta.EndPos                 | 말소리 종료지점     | number | Y        | 4000(ms)                     |
-| 기본 정보 (Meta Info) | meta.PlayTime               | 총 재생 시간        | number | Y        | 5000(ms)                     |
-| 기본 정보 (Meta Info) | meta.DataSize               | 음원 데이터 크기    | number |          | 5.2(Mbyte)                   |
-| 기본 정보 (Meta Info) | meta.RecordingEnv           | 녹음 환경           | string | Y        | "Chamber"                    |
-| 기본 정보 (Meta Info) | meta.NoiseEnv               | 노이즈 환경         | string | Y        | "N/A"                        |
-| 기본 정보 (Meta Info) | meta.RecordDevice           | 녹음 장치           | string | Y        | "MIC"                        |
-| 기본 정보 (Meta Info) | meta.FileCategory           | 파일 종류           | string |          | "Audio"                      |
-| 기본 정보 (Meta Info) | meta.DirectoryPath          | 파일 위치           | string |          | “./Auditory/Train/”          |
-| 기본 정보 (Meta Info) | meta.FileFormat             | 파일 포맷           | string | Y        | "PCM"                        |
-| 기본 정보 (Meta Info) | meta.NumberOfRepeat         | 반복 차수           | string |          | "3"                          |
-| 기본 정보 (Meta Info) | meta.Distance               | 녹음 거리           | string |          | "50"                         |
-| 기본 정보 (Meta Info) | meta.QualityStatus          | 품질 상태           | string |          | "Available"                  |
-| 환자 정보 (Patient Info) | patient.SpeakerName       | 환자 이름           | string |          | "HJH"                        |
-| 환자 정보 (Patient Info) | patient.Gender            | 성별                | enum   | Y        | 0 : 남, 1 : 여               |
-| 환자 정보 (Patient Info) | patient.Age               | 나이                | number | Y        | 27                           |
-| 환자 정보 (Patient Info) | patient.Geo               | 거주지              | string | Y        | “안양시”                     |
-| 질병 정보 (Disease Info) | Disease.Disease           | 질병 타입           | enum   | Y        | 0 : 뇌졸중, 1 : 퇴행성 뇌질환, 2 : 말초성 뇌신경장애, 3 : 기타/복합 |
-| 질병 정보 (Disease Info) | Disease.Subcategory1      | 뇌질환 카테고리     | enum   |          | 0 : 경도 등급, 1 : 중등도 등급, 2 : 고도 등급 |
-| 질병 정보 (Disease Info) | Disease.GradeCategory1    | 뇌질환 장애 등급 카테고리 | enum   |          | 0 : 언어, 1 : 청각, 2 : 기타/복합 |
-| 질병 정보 (Disease Info) | Disease.Subcategory2      | 언어·청각 카테고리  | enum   |          | 0 : 경도 등급, 1 : 중등도 등급, 2 : 고도 등급 |
-| 질병 정보 (Disease Info) | Disease.GradeCategory2    | 언어·청각 장애 등급 카테고리 | enum   |          | 0 : 기능성, 1 : 후두, 2 : 구강, 3 : 기타/복합 |
-| 질병 정보 (Disease Info) | Disease.Subcategory3      | 후두 카테고리       | enum   |          | 0 : 경도 등급, 1 : 중등도 등급, 2 : 고도 등급 |
-| 질병 정보 (Disease Info) | Disease.GradeCategory3    | 후두 장애 등급 카테고리 | enum   |          | 0 : 경도 등급, 1 : 중등도 등급, 2 : 고도 등급 |
-| 검사 정보 (Test Info) | Test.TestMethod            | 검사 방법           | enum   | Y        | 0 : 단어, 1 : 문장, 2 : 문단, 3 : 준자유발화, 4 : 자유발화 |
-| 검사 정보 (Test Info) | Test.Transcript            | 발화 텍스트         | string | Y        | “크리스마스는 0월 0일입니다.” |
+__※여기서 폴더명은 각 대화의 ID, 파일명은 발화 문장의 ID입니다.__
+
+### 메타데이터 JSON 파일 예시
+------------------
+```JSON
+{
+	"dataSet": {
+		"version": "1.0",
+		"date": "20210110",
+		"typeInfo": {
+			"category": "교육",
+			"subcategory": "교육",
+			"place": null,
+			"speakers": [
+				{
+					"id": "10614",
+					"gender": "여",
+					"type": "상담원",
+					"age": "30대",
+					"residence": "서울"
+				},
+				{
+					"id": "qpccbzaz",
+					"gender": "여",
+					"type": "고객",
+					"age": "30대",
+					"residence": "경기"
+				}
+			],
+			"inputType": "모바일"
+		},
+		"dialogs": [
+			{
+				"speaker": "10614",
+				"audioPath": "KtelSpeech/D60/J91/S00007727/0001.wav",
+				"textPath": "KtelSpeech/D60/J91/S00007727/0001.txt"
+			}
+			...
+}
+```
+### 각 카테고리 설명
+---------------------
+| ID  | 키 명 | 타입  |  키 설명 |
+|---|---|---|---|
+|  | dataSet        | Dict  |  데이터셋               |                                           |
+| 1   | version         | String | 데이터셋 버전       |                                           |
+| 2   | date            | String | 녹취된 날짜         |                                           |
+| 3   | typeInfo        | Dict   | 음원 데이터 상세 정보 |                                           |
+| 3-1 | category        | String | 음원 카테고리 정보  |                                           |
+| 3-2 | subcategory     | String | 음원 서브 카테고리  |                                           |
+| 3-3 | place           | String | 음원 녹취 장소      |                                           |
+| 3-4 | speakers        | List   | 화자 목록           |                                           |
+| 3-4-1 | id            | String | 화자 아이디         |                                           |
+| 3-4-2 | type          | String | 화자 유형: 고객, 상담원 |                                           |
+| 3-4-3 | age           | String | 나이대: 20대, 30대, 50(추정), null(알수없음) 등 | |
+| 3-4-4 | gender        | String | 화자 성별: 남, 여   |                                           |
+| 3-4-5 | residence     | String | 거주지역: 서울, 대전, 부산, 광주, null(알수없음) 등 | |
+| 3-5 | inputType       | String | 입력형식: 방송, 유선, 모바일, 인터넷 등 |  |
+| 4   | dialogs         | List   | 전사 데이터 목록: 묵음 기준으로 나누어진 발화 단위로 생성 | |
+| 4-1 | speaker         | String | 화자 아이디: speakers에 등록된 id |            |
+| 4-2 | audioPath       | String | 발화 단위 RAW 데이터 경로 |                                    |
+| 4-3 | textPath        | String | 발화 단위 TEXT 데이터 경로 |                                    |
 
 
+### 데이터 사이즈 
+ -------------------
+| 종류 | 내용 |
+|:---:|:---:|
+| train | 약 99 GB  |
+| val | 약 1.2GB  |
+| 총 용량 | 약 100 GB |
